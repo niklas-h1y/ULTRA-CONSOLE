@@ -1,0 +1,1 @@
+Add PNG icon files here: icon-16.png, icon-32.png, icon-48.png, and icon-128.png. Replace these filenames or update manifest.json if you use different sizes. Binary placeholders are intentionally omitted.

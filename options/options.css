@@ -1,0 +1,7 @@
+body {
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 0 20px;
+  color: #222;
+  font: 16px/1.5 system-ui, sans-serif;
+}

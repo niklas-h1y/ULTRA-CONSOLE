@@ -1,0 +1,11 @@
+{
+  "name": "extension-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A minimal Manifest V3 browser extension starter.",
+  "scripts": {
+    "check": "node --check background.js && node --check content/content.js && node --check popup/popup.js && node --check options/options.js"
+  },
+  "devDependencies": {},
+  "license": "UNLICENSED"
+}
