@@ -1,0 +1,1 @@
+chrome.runtime.onMessage.addListener((message)=>{if(message?.type!=="ULTRA_TOGGLE")return;const root=document.getElementById("ultra-console-root");const launcher=root?.shadowRoot?.querySelector(".launcher");launcher?.click();});

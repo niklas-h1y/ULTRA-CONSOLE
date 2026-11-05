@@ -1,1 +1,13 @@
-chrome.runtime.onInstalled.addListener(()=>{chrome.contextMenus.create({id:"ultra-open",title:"Open ULTRA-CONSOLE",contexts:["page","selection","link","image"]})});chrome.contextMenus.onClicked.addListener((i,t)=>{if(i.menuItemId==="ultra-open"&&t?.id)chrome.tabs.sendMessage(t.id,{type:"ULTRA_TOGGLE"}).catch(()=>{})});chrome.commands?.onCommand.addListener(async c=>{if(c!=="toggle-ultra-console")return;const [t]=await chrome.tabs.query({active:true,lastFocusedWindow:true});if(t?.id)chrome.tabs.sendMessage(t.id,{type:"ULTRA_TOGGLE"}).catch(()=>{})});chrome.runtime.onMessage.addListener((m,s,r)=>{if(m?.type==="PING"){r({ok:true});return true}});
+// Manifest V3 background service worker.
+// Runs only when the browser needs it; do not rely on global state persisting.
+
+chrome.runtime.onInstalled.addListener(() => {
+  console.info("Extension Template installed.");
+});
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  // TODO: Handle messages from popup, options, or content scripts.
+  if (message?.type === "PING") {
+    sendResponse({ ok: true });
+  }
+});

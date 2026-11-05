@@ -1,1 +1,11 @@
-{"name":"ultra-console","version":"3.0.0","private":false,"description":"Advanced browser developer tools.","scripts":{"check":"node --check background.js && node --check content/content.js && node --check content/page-hook.js && node --check devtools/devtools.js && node --check devtools/panel.js && node --check popup/popup.js && node --check options/options.js"},"license":"MIT"}
+{
+  "name": "ultra-console",
+  "version": "2.0.0",
+  "private": false,
+  "description": "A powerful in-page developer console for the web.",
+  "scripts": {
+    "check": "node --check background.js && node --check content/content.js && node --check content/page-hook.js && node --check popup/popup.js && node --check options/options.js"
+  },
+  "devDependencies": {},
+  "license": "MIT"
+}

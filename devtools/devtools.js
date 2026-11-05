@@ -1,1 +1,3 @@
-chrome.devtools.panels.create("✳ ULTRA","","devtools/panel.html",()=>{});chrome.devtools.panels.elements.createSidebarPane("ULTRA Inspector",pane=>{const update=()=>pane.setExpression("({tag:$0?.tagName,id:$0?.id,classes:$0?.className,text:$0?.textContent?.trim()?.slice(0,500),rect:$0?.getBoundingClientRect().toJSON(),attributes:$0?Object.fromEntries([...$0.attributes].map(a=>[a.name,a.value])):{}})");update();chrome.devtools.panels.elements.onSelectionChanged.addListener(update)});
+// Optional DevTools entry point.
+// To enable: add "devtools_page": "devtools/devtools.html" to manifest.json.
+chrome.devtools.panels.create("Extension", "", "devtools/panel.html");
