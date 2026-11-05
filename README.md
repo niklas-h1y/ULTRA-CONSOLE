@@ -5,9 +5,9 @@ A lightweight, powerful in-page developer console for Chromium and Firefox. Buil
 ## Features
 
 - **Console:** captures log/info/warn/error/debug/table/dir/trace, uncaught errors and unhandled promise rejections; execute JavaScript in the page context; filter, clear and export logs.
-- **Network:** observes Fetch and XMLHttpRequest traffic, status, duration, request metadata, text response previews and manual request replay.
+- **Network:** observes Fetch and XMLHttpRequest traffic, status, duration, request metadata, text response previews and manual Fetch request replay (with confirmation for non-GET/HEAD methods).
 - **Elements:** live DOM tree (up to 350 nodes), element details, computed-style summary, and in-page editing for text, class, ID and inline CSS; selected elements can also be removed.
-- **Storage:** inspect LocalStorage, SessionStorage and document cookies.
+- **Storage:** inspect LocalStorage, SessionStorage, document cookies and read-only IndexedDB database/object-store previews (first 25 records per store).
 - **Performance:** navigation timing, resource count and JS heap usage where supported.
 - **Sources:** list page script URLs and inline scripts.
 - Floating launcher, isolated Shadow DOM UI, dark theme, responsive layout and Alt+Shift+D shortcut.
@@ -24,7 +24,7 @@ A lightweight, powerful in-page developer console for Chromium and Firefox. Buil
 
 JavaScript evaluation runs in the inspected page's main world and has the page's privileges. Treat commands like DevTools. Network instrumentation observes requests initiated after injection; it cannot recover earlier traffic. Text response previews are capped at 20 KB. Replaying a request sends a new real request with the current page's credentials where permitted; replaying state-changing requests can repeat actions or submit data. Cross-origin response visibility remains subject to browser CORS rules. Storage inspection is limited to the current origin and browser cookie visibility.
 
-The extension uses broad site access because inspecting arbitrary pages is its core purpose. Review permissions before installing. Do not use it on pages you do not trust.
+The MAIN-world instrumentation is registered as a content script rather than injected through a page script tag, avoiding common page-CSP injection blocks. Chromium 111+ and Firefox 128+ are required for MAIN-world content scripts. The extension uses broad site access because inspecting arbitrary pages is its core purpose. Review permissions before installing. Do not use it on pages you do not trust.
 
 ## Development
 
