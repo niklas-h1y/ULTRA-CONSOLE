@@ -1,35 +1,39 @@
-# Extension Template
+# ULTRA-CONSOLE
 
-A minimal, cross-browser WebExtension starter using Manifest V3 and plain HTML, CSS, and JavaScript. Optional entry points are included as small examples; remove the parts your extension does not use.
+A lightweight, powerful in-page developer console for Chromium and Firefox. Built as a Manifest V3 WebExtension with plain JavaScript and no runtime dependencies.
 
-## Quick start
+## Features
 
-1. Edit `manifest.json` and set your extension name, version, and Firefox add-on ID.
+- **Console:** captures log/info/warn/error/debug/table/dir/trace, uncaught errors and unhandled promise rejections; execute JavaScript in the page context; filter, clear and export logs.
+- **Network:** observes Fetch and XMLHttpRequest traffic, status, duration, request metadata and text response previews.
+- **Elements:** page metadata and DOM element count (full tree editing is on the roadmap).
+- **Storage:** inspect LocalStorage, SessionStorage and document cookies.
+- **Performance:** navigation timing, resource count and JS heap usage where supported.
+- **Sources:** list page script URLs and inline scripts.
+- Floating launcher, isolated Shadow DOM UI, dark theme, responsive layout and Alt+Shift+D shortcut.
+
+## Install
+
+1. Download or clone this repository.
 2. Open `chrome://extensions` (Chrome/Edge/Brave) or `about:debugging#/runtime/this-firefox` (Firefox).
-3. Enable developer mode and load this folder as an unpacked/temporary extension.
-4. Add only the permissions and host permissions your extension actually needs.
+3. Enable Developer mode / Load Temporary Add-on.
+4. Select this folder (or its `manifest.json` in Firefox).
+5. Visit a page and click **✳ ULTRA** in the lower-right corner. Shortcut: **Alt+Shift+D**.
 
-## Structure
+## Security and limitations
 
-- `background.js` — service worker for events and background tasks.
-- `content/` — scripts and styles injected into matching web pages.
-- `popup/` — toolbar popup UI.
-- `options/` — settings page.
-- `newtab/` — optional custom new-tab page.
-- `sidepanel/` — optional Chromium side panel.
-- `devtools/` — optional DevTools panel.
-- `assets/icons/` — extension icons (replace the placeholders with real PNGs).
-- `lib/` — place shared or third-party libraries here.
-- `locales/` — reserved for `_locales/<locale>/messages.json` translations.
+JavaScript evaluation runs in the inspected page's main world and has the page's privileges. Treat commands like DevTools. Network instrumentation observes requests initiated after injection; it cannot recover earlier traffic. Text response previews are capped at 20 KB. Cross-origin response visibility remains subject to browser CORS rules. Storage inspection is limited to the current origin and browser cookie visibility.
 
-## Browser notes
+The extension uses broad site access because inspecting arbitrary pages is its core purpose. Review permissions before installing. Do not use it on pages you do not trust.
 
-The manifest uses Manifest V3. Chrome/Chromium generates the extension ID from the signing key; there is no standard top-level manifest `id` field. Firefox uses `browser_specific_settings.gecko.id`, which is provided as a placeholder and should be changed to a unique ID before publishing. APIs and optional features can differ by browser; check compatibility before enabling them.
+## Development
 
-## Permissions
+No bundler is required. Run `npm run check` with Node.js to syntax-check JavaScript files. Reload the unpacked extension after edits.
 
-The starter requests no broad host access. Add permissions such as `storage`, `tabs`, `scripting`, or `contextMenus` only when needed. Add site access under `host_permissions` (or `optional_host_permissions`) and explain why it is needed.
+## Roadmap
 
-## Packaging
+Full DOM tree editing, request replay/blocking, IndexedDB inspection, plugin API, command autocomplete, persistent workspaces and richer source inspection.
 
-Load this directory directly for development. For distribution, package the extension files with `manifest.json` at the archive root. Do not include development-only files such as `.git/` or `node_modules/`.
+## License
+
+MIT

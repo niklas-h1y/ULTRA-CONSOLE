@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Extension Template",
-  "version": "1.0.0",
-  "description": "A starter template for browser extensions.",
+  "name": "ULTRA-CONSOLE",
+  "version": "2.0.0",
+  "description": "A powerful in-page developer console and page inspector.",
   "action": {
-    "default_title": "Extension Template",
+    "default_title": "ULTRA-CONSOLE",
     "default_popup": "popup/index.html"
   },
   "background": {
@@ -13,24 +13,23 @@
   "options_page": "options/index.html",
   "content_scripts": [
     {
-      "matches": [
-        "https://example.com/*"
-      ],
-      "js": [
-        "content/content.js"
-      ],
-      "css": [
-        "content/content.css"
-      ],
-      "run_at": "document_idle"
+      "matches": ["<all_urls>"],
+      "js": ["content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_start"
     }
   ],
-  "permissions": [
-    "storage"
+  "web_accessible_resources": [
+    {
+      "resources": ["content/page-hook.js"],
+      "matches": ["<all_urls>"]
+    }
   ],
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
   "browser_specific_settings": {
     "gecko": {
-      "id": "extension-template@example.com",
+      "id": "ultra-console@example.com",
       "strict_min_version": "109.0"
     }
   }
