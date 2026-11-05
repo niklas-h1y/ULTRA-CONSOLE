@@ -1,36 +1,15 @@
 {
   "manifest_version": 3,
   "name": "ULTRA-CONSOLE",
-  "version": "2.0.0",
-  "description": "A powerful in-page developer console and page inspector.",
-  "action": {
-    "default_title": "ULTRA-CONSOLE",
-    "default_popup": "popup/index.html"
-  },
-  "background": {
-    "service_worker": "background.js"
-  },
+  "short_name": "ULTRA",
+  "version": "2.1.0",
+  "description": "A full-featured developer console extension for inspecting and debugging web pages.",
+  "action": {"default_title":"Open ULTRA-CONSOLE","default_popup":"popup/index.html"},
+  "background": {"service_worker":"background.js"},
+  "devtools_page": "devtools/devtools.html",
   "options_page": "options/index.html",
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content/content.js"],
-      "css": ["content/content.css"],
-      "run_at": "document_start"
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["content/page-hook.js"],
-      "matches": ["<all_urls>"]
-    }
-  ],
+  "content_scripts": [{"matches":["<all_urls>"],"js":["content/content.js"],"css":["content/content.css"],"run_at":"document_start"}],
+  "web_accessible_resources": [{"resources":["content/page-hook.js"],"matches":["<all_urls>"]}],
   "permissions": ["storage"],
-  "host_permissions": ["<all_urls>"],
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "ultra-console@example.com",
-      "strict_min_version": "109.0"
-    }
-  }
+  "host_permissions": ["<all_urls>"]
 }
