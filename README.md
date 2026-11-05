@@ -6,7 +6,7 @@ A lightweight, powerful in-page developer console for Chromium and Firefox. Buil
 
 - **Console:** captures log/info/warn/error/debug/table/dir/trace, uncaught errors and unhandled promise rejections; execute JavaScript in the page context; filter, clear and export logs.
 - **Network:** observes Fetch and XMLHttpRequest traffic, status, duration, request metadata and text response previews.
-- **Elements:** page metadata and DOM element count (full tree editing is on the roadmap).
+- **Elements:** live DOM tree (up to 350 nodes), element details, computed-style summary, and in-page editing for text, class, ID and inline CSS; selected elements can also be removed.
 - **Storage:** inspect LocalStorage, SessionStorage and document cookies.
 - **Performance:** navigation timing, resource count and JS heap usage where supported.
 - **Sources:** list page script URLs and inline scripts.
@@ -32,7 +32,7 @@ No bundler is required. Run `npm run check` with Node.js to syntax-check JavaScr
 
 ## Roadmap
 
-Full DOM tree editing, request replay/blocking, IndexedDB inspection, plugin API, command autocomplete, persistent workspaces and richer source inspection.
+Request replay/blocking, IndexedDB inspection, plugin API, command autocomplete, persistent workspaces, richer source inspection and a deeper computed-style editor.
 
 ## License
 
