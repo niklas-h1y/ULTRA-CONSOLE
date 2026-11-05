@@ -88,7 +88,11 @@
         const response=await fetch(req.url,init);
         result={status:response.status,statusText:response.statusText,ok:response.ok,url:response.url};
       }
-      else if (action === "storage") result = {local:{...localStorage},session:{...sessionStorage},cookies:document.cookie};
+      else if (action === "storage") {
+        const indexedDBData=[];
+        if(indexedDB.databases){const dbs=await indexedDB.databases();for(const info of dbs){if(!info.name)continue;const db=await new Promise(resolve=>{const req=indexedDB.open(info.name);req.onsuccess=()=>resolve(req.result);req.onerror=()=>resolve(null);req.onblocked=()=>resolve(null)});if(!db)continue;const stores=[];for(const storeName of [...db.objectStoreNames]){const rows=await new Promise(resolve=>{try{const tx=db.transaction(storeName,"readonly"),req=tx.objectStore(storeName).getAll(undefined,25);req.onsuccess=()=>resolve(req.result);req.onerror=()=>resolve(["[Read failed]"]);}catch{resolve(["[Unavailable]"])}});stores.push({name:storeName,preview:rows})}indexedDBData.push({name:db.name,version:db.version,stores});db.close()}}
+        result={local:{...localStorage},session:{...sessionStorage},cookies:document.cookie,indexedDB:indexedDBData};
+      }
       else if (action === "scripts") result = Array.from(document.scripts).map(s=>({src:s.src||"[inline]",type:s.type||"text/javascript"}));
       send("result",{id,result:clean(result)});
     } catch(error) { send("result",{id,error:{name:error.name,message:error.message,stack:error.stack}}); }
