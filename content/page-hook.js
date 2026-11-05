@@ -64,7 +64,7 @@
       else if (action === "snapshot") result = {url:location.href,title:document.title,html:document.documentElement.outerHTML.slice(0,50000),elements:document.querySelectorAll("*").length};
       else if (action === "domTree") {
         const nodes=[]; let count=0;
-        const selectorFor = el => { if(el.id) return "#"+CSS.escape(el.id); const parts=[]; let n=el; while(n&&n.nodeType===1&&n!==document.documentElement){let part=n.localName;if(n.parentElement){const same=[...n.parentElement.children].filter(x=>x.localName===n.localName);if(same.length>1)part+=":nth-of-type("+(same.indexOf(n)+1)+")"}parts.unshift(part);n=n.parentElement} return "html>"+parts.join(">") };
+        const selectorFor = el => { if(el===document.documentElement)return "html"; if(el.id) return "#"+CSS.escape(el.id); const parts=[]; let n=el; while(n&&n.nodeType===1&&n!==document.documentElement){let part=n.localName;if(n.parentElement){const same=[...n.parentElement.children].filter(x=>x.localName===n.localName);if(same.length>1)part+=":nth-of-type("+(same.indexOf(n)+1)+")"}parts.unshift(part);n=n.parentElement} return "html>"+parts.join(">") };
         const walk=(el,depth)=>{if(!el||nodes.length>=350||depth>9)return;count++;nodes.push({selector:selectorFor(el),depth,label:el.localName+(el.id?"#"+el.id:"")+(el.classList?.length?"."+[...el.classList].slice(0,2).join("."):"")});[...el.children].slice(0,60).forEach(ch=>walk(ch,depth+1))};
         walk(document.documentElement,0); result={nodes,count:document.querySelectorAll("*").length};
       }
