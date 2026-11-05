@@ -80,6 +80,14 @@
         result={success:true};
       }
       else if (action === "removeNode") { const el=document.querySelector(command);if(!el)throw new Error("Element not found");if(el===document.documentElement||el===document.body)throw new Error("Refusing to remove the document root");el.remove();result={success:true}; }
+      else if (action === "replay") {
+        const req=JSON.parse(command), method=String(req.method||"GET").toUpperCase();
+        const headers=req.headers&&typeof req.headers==="object"&&!Array.isArray(req.headers)?req.headers:undefined;
+        const init={method,headers,credentials:"include"};
+        if(!["GET","HEAD"].includes(method)&&req.body&&typeof req.body==="string")init.body=req.body;
+        const response=await fetch(req.url,init);
+        result={status:response.status,statusText:response.statusText,ok:response.ok,url:response.url};
+      }
       else if (action === "storage") result = {local:{...localStorage},session:{...sessionStorage},cookies:document.cookie};
       else if (action === "scripts") result = Array.from(document.scripts).map(s=>({src:s.src||"[inline]",type:s.type||"text/javascript"}));
       send("result",{id,result:clean(result)});
