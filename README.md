@@ -5,7 +5,7 @@ A lightweight, powerful in-page developer console for Chromium and Firefox. Buil
 ## Features
 
 - **Console:** captures log/info/warn/error/debug/table/dir/trace, uncaught errors and unhandled promise rejections; execute JavaScript in the page context; filter, clear and export logs.
-- **Network:** observes Fetch and XMLHttpRequest traffic, status, duration, request metadata and text response previews.
+- **Network:** observes Fetch and XMLHttpRequest traffic, status, duration, request metadata, text response previews and manual request replay.
 - **Elements:** live DOM tree (up to 350 nodes), element details, computed-style summary, and in-page editing for text, class, ID and inline CSS; selected elements can also be removed.
 - **Storage:** inspect LocalStorage, SessionStorage and document cookies.
 - **Performance:** navigation timing, resource count and JS heap usage where supported.
@@ -22,7 +22,7 @@ A lightweight, powerful in-page developer console for Chromium and Firefox. Buil
 
 ## Security and limitations
 
-JavaScript evaluation runs in the inspected page's main world and has the page's privileges. Treat commands like DevTools. Network instrumentation observes requests initiated after injection; it cannot recover earlier traffic. Text response previews are capped at 20 KB. Cross-origin response visibility remains subject to browser CORS rules. Storage inspection is limited to the current origin and browser cookie visibility.
+JavaScript evaluation runs in the inspected page's main world and has the page's privileges. Treat commands like DevTools. Network instrumentation observes requests initiated after injection; it cannot recover earlier traffic. Text response previews are capped at 20 KB. Replaying a request sends a new real request with the current page's credentials where permitted; replaying state-changing requests can repeat actions or submit data. Cross-origin response visibility remains subject to browser CORS rules. Storage inspection is limited to the current origin and browser cookie visibility.
 
 The extension uses broad site access because inspecting arbitrary pages is its core purpose. Review permissions before installing. Do not use it on pages you do not trust.
 
