@@ -1,13 +1,8 @@
-// Manifest V3 background service worker.
-// Runs only when the browser needs it; do not rely on global state persisting.
-
-chrome.runtime.onInstalled.addListener(() => {
-  console.info("Extension Template installed.");
+// ULTRA-CONSOLE Manifest V3 service worker.
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") console.info("ULTRA-CONSOLE installed.");
+  if (details.reason === "update") console.info("ULTRA-CONSOLE updated.");
 });
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  // TODO: Handle messages from popup, options, or content scripts.
-  if (message?.type === "PING") {
-    sendResponse({ ok: true });
-  }
+  if (message?.type === "ULTRA_PING") sendResponse({ok:true,name:"ULTRA-CONSOLE"});
 });

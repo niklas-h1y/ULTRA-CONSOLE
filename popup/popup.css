@@ -1,9 +1,1 @@
-body {
-  min-width: 260px;
-  margin: 0;
-  padding: 16px;
-  color: #222;
-  font: 14px/1.5 system-ui, sans-serif;
-}
-h1 { margin: 0 0 8px; font-size: 18px; }
-button { padding: 6px 10px; cursor: pointer; }
+*{box-sizing:border-box}body{margin:0;width:310px;background:#0b1220;color:#e6edf7;font:13px/1.45 Inter,system-ui,sans-serif}header{display:flex;align-items:center;gap:11px;padding:18px 17px 15px;border-bottom:1px solid #223047}.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#15352f;color:#70e2b5;font-size:23px}h1{margin:0;font-size:14px;letter-spacing:.08em}header p{margin:2px 0 0;color:#7f91a9;font-size:9px;letter-spacing:.15em}.version{margin-left:auto;color:#8394aa;font-size:10px}.status{display:flex;align-items:center;gap:8px;color:#9eafc5;font-size:11px;margin:2px 0 14px}.dot{width:7px;height:7px;border-radius:50%;background:#64748b}.dot.ready{background:#4ade80;box-shadow:0 0 9px #4ade8070}main{padding:17px}.primary,.secondary{width:100%;border-radius:8px;padding:11px 12px;text-align:left;font:600 12px system-ui;cursor:pointer}.primary{border:1px solid #3b9d7b;background:#12664f;color:#effff8}.secondary{margin-top:8px;border:1px solid #34445c;background:#152235;color:#dce7f5}.primary span,.secondary span{float:right;color:#9de8ce}.hint{margin-top:15px;color:#8091a8;font-size:10px}footer{padding:10px 17px;border-top:1px solid #223047;color:#64758d;font-size:9px;letter-spacing:.05em}

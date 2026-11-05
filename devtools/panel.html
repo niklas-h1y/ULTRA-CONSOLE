@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><title>Extension panel</title></head>
-<body><h1>DevTools panel</h1></body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ULTRA-CONSOLE DevTools</title><style>
+:root{color-scheme:dark;font:12px/1.5 ui-monospace,Consolas,monospace}*{box-sizing:border-box}body{margin:0;background:#0b111b;color:#dce5f2}.bar{height:42px;display:flex;align-items:center;gap:8px;padding:0 12px;background:#111b29;border-bottom:1px solid #29384c}.brand{font:700 12px system-ui;letter-spacing:.08em}.brand b{color:#6ee7b7}.tabs{display:flex;gap:5px;margin-left:18px}.tab,button{border:1px solid #34445c;border-radius:5px;background:#172335;color:#cbd7e7;padding:5px 9px;cursor:pointer}.tab.active{background:#24405a;color:white}main{height:calc(100vh - 42px);overflow:auto}.toolbar{padding:8px 12px;border-bottom:1px solid #202d40;display:flex;gap:8px}.toolbar input{flex:1;min-width:0;background:#0a121e;border:1px solid #2b3b52;color:#e5edf8;border-radius:5px;padding:6px}.row{padding:7px 12px;border-bottom:1px solid #172333;white-space:pre-wrap;overflow-wrap:anywhere}.empty{padding:24px;color:#8293aa}</style></head>
+<body><header class="bar"><span class="brand"><b>✳</b> ULTRA-CONSOLE</span><nav class="tabs"><button class="tab active" data-view="console">Console</button><button class="tab" data-view="network">Network</button><button class="tab" data-view="page">Page</button></nav></header>
+<main><div class="toolbar"><input id="filter" placeholder="Filter…"><button id="clear">Clear</button></div><section id="output"><div class="empty">ULTRA-CONSOLE DevTools panel ready.</div></section></main><script src="panel.js"></script></body></html>
