@@ -1,39 +1,30 @@
 # ULTRA-CONSOLE
 
-A lightweight, powerful in-page developer console for Chromium and Firefox. Built as a Manifest V3 WebExtension with plain JavaScript and no runtime dependencies.
+Advanced browser developer tools with a dedicated DevTools panel and a floating in-page console.
 
 ## Features
-
-- **Console:** captures log/info/warn/error/debug/table/dir/trace, uncaught errors and unhandled promise rejections; execute JavaScript in the page context; filter, clear and export logs.
-- **Network:** observes Fetch and XMLHttpRequest traffic, status, duration, request metadata and text response previews.
-- **Elements:** page metadata and DOM element count (full tree editing is on the roadmap).
-- **Storage:** inspect LocalStorage, SessionStorage and document cookies.
-- **Performance:** navigation timing, resource count and JS heap usage where supported.
-- **Sources:** list page script URLs and inline scripts.
-- Floating launcher, isolated Shadow DOM UI, dark theme, responsive layout and Alt+Shift+D shortcut.
+- Console: evaluate JavaScript in the inspected page, filter by level, command history, preserve logs and export.
+- Elements: browse a DOM outline, query with CSS selectors, inspect node metadata and use the Elements sidebar.
+- Network: inspect browser HAR requests, filter, view headers, query parameters, timing and response bodies, export HAR.
+- Storage: inspect and edit Local and Session Storage; list IndexedDB databases and Cache Storage.
+- Performance: navigation timing, resource breakdown and largest resources.
+- Sources: browse external and inline scripts and stylesheets.
+- Cookies: inspect cookies exposed to document.cookie.
+- Audits: accessibility checks, SEO metadata, viewport diagnostics and link export.
+- In-page console: floating Shadow DOM console with runtime logging and Fetch/XHR observation.
 
 ## Install
-
-1. Download or clone this repository.
-2. Open `chrome://extensions` (Chrome/Edge/Brave) or `about:debugging#/runtime/this-firefox` (Firefox).
-3. Enable Developer mode / Load Temporary Add-on.
-4. Select this folder (or its `manifest.json` in Firefox).
-5. Visit a page and click **✳ ULTRA** in the lower-right corner. Shortcut: **Alt+Shift+D**.
-
-## Security and limitations
-
-JavaScript evaluation runs in the inspected page's main world and has the page's privileges. Treat commands like DevTools. Network instrumentation observes requests initiated after injection; it cannot recover earlier traffic. Text response previews are capped at 20 KB. Cross-origin response visibility remains subject to browser CORS rules. Storage inspection is limited to the current origin and browser cookie visibility.
-
-The extension uses broad site access because inspecting arbitrary pages is its core purpose. Review permissions before installing. Do not use it on pages you do not trust.
+1. Open chrome://extensions (Chromium) or about:debugging#/runtime/this-firefox (Firefox).
+2. Enable Developer mode or Load Temporary Add-on.
+3. Load this repository folder or select manifest.json.
+4. Open a website, open browser DevTools and choose the ULTRA panel.
+5. Or use the floating ULTRA button; toggle with Alt+Shift+D.
 
 ## Development
+No build step or runtime dependency is required. Run npm run check with Node.js, then reload the unpacked extension.
 
-No bundler is required. Run `npm run check` with Node.js to syntax-check JavaScript files. Reload the unpacked extension after edits.
-
-## Roadmap
-
-Full DOM tree editing, request replay/blocking, IndexedDB inspection, plugin API, command autocomplete, persistent workspaces and richer source inspection.
+## Permissions and limitations
+Broad site access is required to inspect arbitrary pages. JavaScript evaluation has the inspected page's privileges; only run code you trust. Network data comes from the browser HAR API and may omit requests made before DevTools opened; reload to capture a complete session. Response bodies are retrieved on demand. Cookies are limited to those exposed to document.cookie; HttpOnly cookies are not readable. IndexedDB and Cache Storage enumeration depends on browser support. Browser security boundaries remain in force.
 
 ## License
-
 MIT
