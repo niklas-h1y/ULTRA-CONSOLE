@@ -33,7 +33,7 @@
     const started = performance.now(), input = args[0], init = args[1] || {};
     const url = typeof input === "string" ? input : input?.url || String(input);
     const method = init.method || input?.method || "GET";
-    send("network",{id,phase:"start",url,method,kind:"fetch",time:Date.now(),requestHeaders:clean(init.headers),body:clean(init.body)});
+    send("network",{id,phase:"start",url,method,kind:"fetch",time:Date.now(),requestHeaders:Object.fromEntries(new Headers(init.headers || input?.headers || {}).entries()),body:clean(init.body)});
     try {
       const response = await originalFetch.apply(this,args);
       const duration = Math.round(performance.now()-started);
